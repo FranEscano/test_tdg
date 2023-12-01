@@ -24,11 +24,11 @@ pipeline {
             steps {
                 script {
                     // Paths and name of the zip file
-                    def zipFilePath = 'cypress/downloads/peopleDetails.zip'
-                    def extractPath = 'cypress/fixtures/'
+                    set zipFilePath = 'cypress/downloads/peopleDetails.zip'
+                    set extractPath = 'cypress/fixtures/'
 
                     // Unzip
-                    bat "unzip -o ${zipFilePath} -d ${extractPath}"
+                    tar -xf %zipFilePath% -C %extractPath%
                 }
             }
         }
