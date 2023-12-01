@@ -24,11 +24,11 @@ pipeline {
             steps {
                 script {
                     // Paths and name of the zip file
-                    set zipFilePath = 'cypress/downloads/peopleDetails.zip'
-                    set extractPath = 'cypress/fixtures/'
+                    set 'zipFilePath=cypress/downloads/peopleDetails.zip'
+                    set 'extractPath=cypress/fixtures/'
 
                     // Unzip
-                    tar -xf %zipFilePath% -C %extractPath%
+                    powershell -Command "Expand-Archive -Path '%zipFilePath%' -DestinationPath '%extractPath%' -Force"
                 }
             }
         }
