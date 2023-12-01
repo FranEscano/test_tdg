@@ -23,12 +23,13 @@ pipeline {
         stage('unzip file') {
             steps {
                 script {
+                    @echo off
                     // Paths and name of the zip file
                     set 'zipFilePath=cypress/downloads/peopleDetails.zip'
                     set 'extractPath=cypress/fixtures/'
 
                     // Unzip
-                    powershell -Command "Expand-Archive -Path '%zipFilePath%' -DestinationPath '%extractPath%' -Force"
+                    tar -xf %zipFilePath% -C %extractPath%
                 }
             }
         }
