@@ -46,9 +46,9 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Limpieza, si es necesario
-        }
-    }
+    // post {
+    //     always {
+    //         // Limpieza, si es necesario
+    //     }
+    // }
 }
