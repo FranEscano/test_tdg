@@ -5,41 +5,39 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 script {
-                    // Instalar dependencias de Cypress
+                    // Install dependencies
                     bat 'npm install'
                 }
             }
         }
 
-        stage('Ejecutar pruebas Cypress') {
+        stage('Create data from TDG') {
             steps {
                 script {
-                    // Ejecutar pruebas Cypress desde el primer archivo
+                    // execute Cypress file to create Data
                     bat 'npx cypress run --spec "cypress/e2e/createData.cy.js"'
                 }
             }
         }
 
-        stage('Descomprimir archivo ZIP') {
+        stage('unzip file') {
             steps {
                 script {
-                    // Rutas y nombres de archivo
-                    def zipFilePath = 'ruta/a/tu/archivo.zip'
-                    def extractPath = 'ruta/a/tu/carpeta/destino/'
+                    // Paths and name of the zip file
+                    def zipFilePath = 'cypress/downloads/peopleDetails.zip'
+                    def extractPath = 'cypress/fixtures/'
 
-                    // Crear carpeta de destino si no existe
-                    bat "mkdir -p ${extractPath}"
-
-                    // Descomprimir el archivo ZIP
+                    // Unzip
                     bat "unzip -o ${zipFilePath} -d ${extractPath}"
                 }
             }
         }
 
-        stage('Ejecutar pruebas Cypress después de descomprimir') {
+        stage('Use json file with data in website') {
             steps {
                 script {
-                    // Ejecutar pruebas Cypress desde el segundo archivo después de descomprimir
+                    bat "npm start"
+                    // Execute Cypress script to fill up a form
                     bat 'npx cypress run --spec "cypress/integration/segundo_archivo_spec.js"'
                 }
             }
