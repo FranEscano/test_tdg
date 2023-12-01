@@ -16,6 +16,7 @@ function App() {
   const [postCode, setPostCode] = useState("")
   const [carMake, setCarMake] = useState("")
   const [carModel, setCarModel] = useState("")
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(title);
@@ -61,7 +62,7 @@ function App() {
         <label htmlFor="personal_mobileNumber">Phone: </label>
         <input className="personal_mobileNumber" type="text" placeholder="Phone" onChange={(e) => setMobileNumber(e.target.value)} />
         <br/>
-        <label htmlFor="personal_gender">First Name: </label>
+        <label htmlFor="personal_gender">Gender: </label>
         <input className="personal_gender" type='text' placeholder='Gender' onChange={(e) => setGender(e.target.value)} />
         <br/>
         <label htmlFor="personal_nationality">Nationality: </label>
