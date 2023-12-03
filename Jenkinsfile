@@ -15,7 +15,7 @@ pipeline {
            }
        }
        stage('e2e Tests') {
-         Parallel{
+         steps{
              stage('Test 1') {
                   steps {
                 sh 'npm run cypress:ci'
