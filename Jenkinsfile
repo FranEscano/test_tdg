@@ -6,10 +6,10 @@ pipeline {
 
    tools {nodejs "Node21"}
 
-//    environment {
-//        CHROME_BIN = '/bin/google-chrome'
-      
-//    }
+   environment {
+       CHROME_BIN = '/bin/google-chrome'
+       ELECTRON_EXTRA_LAUNCH_ARGS = --disable-gpu-sandbox
+   }
 
    stages {
        stage('Dependencies') {
