@@ -19,7 +19,7 @@ pipeline {
        }
         stage('Test 1') {
             steps {
-                bat 'cypress run --spec=cypress/e2e/createData.cy.js --no-sandbox'
+                bat 'cypress run --spec=cypress/e2e/createData.cy.js --headless'
             }
         }
              
