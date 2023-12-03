@@ -16,7 +16,7 @@ pipeline {
        }
         stage('Test 1') {
             steps {
-                bat 'cypress run --spec cypress/e2e/createData.cy.js'
+                bat 'npx cypress run --spec cypress/e2e/createData.cy.js'
             }
         }
              
