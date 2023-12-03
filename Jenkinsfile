@@ -1,53 +1,38 @@
 pipeline {
-    agent any
+   agent any
 
-    stages {
-        stage('Install dependencies') {
-            steps {
-                script {
-                    // Install dependencies
-                    bat 'npm install'
-                }
-            }
-        }
+   tools {nodejs "Node12"}
 
-        stage('Create data from TDG') {
-            steps {
-                script {
-                    // execute Cypress file to create Data
-                    bat 'npx cypress run --spec "cypress/e2e/createData.cy.js"'
-                }
-            }
-        }
+   environment {
+       CHROME_BIN = '/bin/google-chrome'
+      
+   }
 
-        stage('unzip file') {
-            steps {
-                script {
-                    @echo off
-                    // Paths and name of the zip file
-                    set 'zipFilePath=cypress/downloads/peopleDetails.zip'
-                    set 'extractPath=cypress/fixtures/'
+   stages {
+       stage('Dependencies') {
+           steps {
+               sh 'npm i'
+           }
+       }
+       stage('e2e Tests') {
+         Parallel{
+             stage('Test 1') {
+                  steps {
+                sh 'npm run cypress:ci'
+                  }
+               }
+             
+             stage('Test 2') {
+                  steps {
+                sh 'npm run cypress2:ci'
+                  }
+               }
 
-                    // Unzip
-                    tar -xf %zipFilePath% -C %extractPath%
-                }
-            }
-        }
-
-        stage('Use json file with data in website') {
-            steps {
-                script {
-                    bat "npm start"
-                    // Execute Cypress script to fill up a form
-                    bat 'npx cypress run --spec "cypress/integration/segundo_archivo_spec.js"'
-                }
-            }
-        }
-    }
-
-    // post {
-    //     always {
-    //         // Limpieza, si es necesario
-    //     }
-    // }
+       }
+       stage('Deploy') {
+           steps {
+               echo 'Deploying....'
+           }
+       }
+   }
 }
