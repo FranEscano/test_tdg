@@ -4,8 +4,8 @@ let fileName = 'peopleDetails';
 describe('use data', () => {
 
   it('use data', function(){
-    cy.visit('https://e035-86-15-252-142.ngrok-free.app ')
-    cy.get('[class="ring-ngrok-blue/20 inline-flex cursor-pointer items-center justify-center rounded px-3 py-1.5 text-sm font-medium transition-colors focus:ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 bg-ngrok-blue hover:bg-ngrok-blue/80 text-white no-underline hover:text-white hover:no-underline focus:no-underline"]').click()
+    cy.visit('https://test-tdg.vercel.app/')
+    // cy.get('[class="ring-ngrok-blue/20 inline-flex cursor-pointer items-center justify-center rounded px-3 py-1.5 text-sm font-medium transition-colors focus:ring focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 bg-ngrok-blue hover:bg-ngrok-blue/80 text-white no-underline hover:text-white hover:no-underline focus:no-underline"]').click()
 
     cy.fixture('JSON1').then(passData => {
       passData.forEach(details => {
