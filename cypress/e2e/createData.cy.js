@@ -31,6 +31,7 @@ describe('Use TDG to generate data', () => {
         cy.contains('File is ready!')
 
         cy.get('[id="file-name-input"]').click().clear().type('peopleDetails')
+        cy.get('[id="json-btn"]').click()
         cy.get('#download-button').click()
         // cy.get('[id="logout-link"]').click()
     })
