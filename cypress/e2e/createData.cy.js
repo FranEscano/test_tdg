@@ -27,11 +27,11 @@ describe('Use TDG to generate data', () => {
         cy.contains('Car Make').click();
         cy.contains('Car Model').click();
         cy.get('[id="submit-selected"]').click()
+        cy.get('[id="json-btn"]').click()
         cy.get('[id="generate-values"]').click()
         cy.contains('File is ready!')
 
         cy.get('[id="file-name-input"]').click().clear().type('peopleDetails')
-        cy.get('[id="json-btn"]').click()
         cy.get('#download-button').click()
         // cy.get('[id="logout-link"]').click()
     })
