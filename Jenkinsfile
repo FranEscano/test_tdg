@@ -8,7 +8,6 @@ pipeline {
 
    environment {
        CHROME_BIN = '/bin/google-chrome'
-       ELECTRON_EXTRA_LAUNCH_ARGS = --disable-gpu-sandbox
    }
 
    stages {
