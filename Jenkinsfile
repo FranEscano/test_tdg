@@ -1,10 +1,5 @@
 pipeline {
-   agent {
-    // this image provides everything needed to run Cypress
-    docker {
-      image 'cypress/base:21'
-    }
-  }
+   agent any
    options {
         ansiColor('xterm')
     }
@@ -12,7 +7,7 @@ pipeline {
    tools {nodejs "Node21"}
 
    environment {
-       CHROME_BIN = '/bin/google-chrome'
+        CHROME_BIN = '/bin/google-chrome'
         ZIP_FILE_PATH = 'cypress\\downloads\\peopleDetails.zip' 
         UNZIP_DESTINATION = 'cypress\\fixtures' 
    }
