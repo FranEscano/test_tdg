@@ -1,5 +1,10 @@
 pipeline {
-   agent any
+   agent {
+    // this image provides everything needed to run Cypress
+    docker {
+      image 'cypress/base:20.9.0'
+    }
+  }
    options {
         ansiColor('xterm')
     }
@@ -17,7 +22,6 @@ pipeline {
            steps {
                sh 'npm install'
                sh 'npm ci'
-               sh 'apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
            }
        }
         stage('Use TDG to generate data') {
