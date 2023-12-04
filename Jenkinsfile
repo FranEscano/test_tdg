@@ -26,7 +26,7 @@ pipeline {
              
         stage('Unzip file') {
             steps {
-                bat 'powershell Expand-Archive -Path ${ZIP_FILE_PATH} -DestinationPath ${UNZIP_DESTINATION}'
+                bat 'powershell Expand-Archive -Path %ZIP_FILE_PATH% -DestinationPath %UNZIP_DESTINATION%'
             }
         }
        stage('Deploy') {
