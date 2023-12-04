@@ -16,12 +16,11 @@ pipeline {
        stage('Dependencies') {
            steps {
                sh 'npm install'
-               sh 'npx cypress install'
+               sh 'npm install cypress'
            }
        }
         stage('Use TDG to generate data') {
             steps {
-                sh 'docker run -v $PWD:/e2e -w /e2e cypress/included:3.4.0'
                 sh 'npx cypress run --spec=cypress\\e2e\\createData.cy.js'
             }
         }
