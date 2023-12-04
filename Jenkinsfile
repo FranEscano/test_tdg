@@ -17,7 +17,6 @@ pipeline {
            steps {
                bat 'npm install'
                bat 'npm install cypress'
-               bat 'npm start'
            }
        }
         stage('Use TDG to generate data') {
