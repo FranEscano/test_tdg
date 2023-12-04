@@ -33,6 +33,6 @@ describe('Use TDG to generate data', () => {
 
         cy.get('[id="file-name-input"]').click().clear().type('peopleDetails')
         cy.get('#download-button').click()
-        // cy.get('[id="logout-link"]').click()
+        cy.get('[id="logout-link"]').click()
     })
 })
