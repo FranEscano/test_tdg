@@ -8,6 +8,8 @@ pipeline {
 
    environment {
        CHROME_BIN = '/bin/google-chrome'
+        ZIP_FILE_PATH = 'cypress\\downloads\\peopleDetails.zip' 
+        UNZIP_DESTINATION = 'cypress\\fixtures' 
    }
 
    stages {
@@ -16,15 +18,15 @@ pipeline {
                bat 'npm install'
            }
        }
-        stage('Test 1') {
+        stage('Use TDG to generate data') {
             steps {
-                bat 'cypress run --spec=cypress\\e2e\\createData.cy.js --headless'
+                bat 'cypress run --spec=cypress\\e2e\\createData.cy.js'
             }
         }
              
-        stage('Test 2') {
+        stage('Unzip file') {
             steps {
-        sh 'npm run cypress2:ci'
+                bat 'powershell Expand-Archive -Path ${ZIP_FILE_PATH} -DestinationPath ${UNZIP_DESTINATION}'
             }
         }
        stage('Deploy') {
