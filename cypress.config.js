@@ -5,9 +5,7 @@ module.exports = defineConfig({
     downloadsFolder: "cypress\\downloads",
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      on('task', {
-        'unzipping': unzipping.unzip,
-    })
+      
 }
     },
   },
