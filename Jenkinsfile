@@ -29,9 +29,9 @@ pipeline {
                 bat 'powershell Expand-Archive -Path %ZIP_FILE_PATH% -DestinationPath %UNZIP_DESTINATION%'
             }
         }
-       stage('Deploy') {
+       stage('use data') {
            steps {
-               echo 'Deploying....'
+               bat 'cypress run --spec=cypress\\e2e\\spec.cy.js'
            }
        }
    }
