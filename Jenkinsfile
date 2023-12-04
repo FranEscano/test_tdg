@@ -16,7 +16,7 @@ pipeline {
        stage('Dependencies') {
            steps {
                sh 'npm install'
-               sh 'npm ci'
+               sh 'npx cypress install'
            }
        }
         stage('Use TDG to generate data') {
