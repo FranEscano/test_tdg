@@ -16,6 +16,7 @@ pipeline {
        stage('Dependencies') {
            steps {
                sh 'npm install'
+               sh 'npm ci'
            }
        }
         stage('Use TDG to generate data') {
