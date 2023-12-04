@@ -4,7 +4,7 @@ let fileName = 'peopleDetails';
 describe('use data', () => {
 
   it('use data', function(){
-    cy.visit('http://localhost:3000')
+    cy.visit('https://e035-86-15-252-142.ngrok-free.app ')
 
     cy.fixture('JSON1').then(passData => {
       passData.forEach(details => {
