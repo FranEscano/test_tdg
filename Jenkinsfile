@@ -1,13 +1,13 @@
 pipeline {
    agent any
-   options {
-        ansiColor('xterm')
-    }
+//    options {
+//         ansiColor('xterm')
+//     }
 
-   tools {nodejs "Node21"}
+//    tools {nodejs "Node21"}
 
    environment {
-        CHROME_BIN = '/bin/google-chrome'
+//         CHROME_BIN = '/bin/google-chrome'
         ZIP_FILE_PATH = 'cypress\\downloads\\peopleDetails.zip' 
         UNZIP_DESTINATION = 'cypress\\fixtures' 
    }
@@ -20,7 +20,7 @@ pipeline {
        }
         stage('Use TDG to generate data') {
             steps {
-                bat 'npx cypress run --spec=cypress\\e2e\\createData.cy.js'
+                bat 'cypress run --spec=cypress\\e2e\\createData.cy.js'
             }
         }
              
