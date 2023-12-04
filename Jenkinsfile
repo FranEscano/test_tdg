@@ -1,8 +1,8 @@
 pipeline {
    agent any
-//    options {
-//         ansiColor('xterm')
-//     }
+   options {
+        ansiColor('xterm')
+    }
 
 //    tools {nodejs "Node21"}
 
