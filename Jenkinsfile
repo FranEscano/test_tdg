@@ -15,23 +15,23 @@ pipeline {
    stages {
        stage('Dependencies') {
            steps {
-               bat 'npm install'
+               sh 'npm install'
            }
        }
         stage('Use TDG to generate data') {
             steps {
-                bat 'npx cypress run --spec=cypress\\e2e\\createData.cy.js'
+                sh 'npx cypress run --spec=cypress\\e2e\\createData.cy.js'
             }
         }
              
         stage('Unzip file') {
             steps {
-                bat 'powershell Expand-Archive -Path %ZIP_FILE_PATH% -DestinationPath %UNZIP_DESTINATION%'
+                sh 'powershell Expand-Archive -Path ${ZIP_FILE_PATH} -DestinationPath ${UNZIP_DESTINATION}'
             }
         }
        stage('use data') {
            steps {
-               bat 'npx cypress run --spec=cypress\\e2e\\spec.cy.js'
+               sh 'npx cypress run --spec=cypress\\e2e\\spec.cy.js'
            }
        }
    }
