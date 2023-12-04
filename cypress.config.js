@@ -5,7 +5,7 @@ const cypress = require("cypress");
 
 module.exports = defineConfig({
     e2e: {
-    downloadsFolder: "cypress/downloads",
+    downloadsFolder: "cypress\\downloads",
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('task', {
