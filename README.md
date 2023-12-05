@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Random Data Generator App
 
-## Available Scripts
+This application is designed to automate the generation and utilization of random personal data for testing purposes. It interacts with a TDG (Test Data Generator) to fetch and process data. The application is built using Cypress for data generation, and the web form is hosted on Vercel.com, making it accessible on the internet. Additionally, a Jenkins pipeline script is included to facilitate the entire process automatically.
 
-In the project directory, you can run:
+### Table of Contents
+1. [Installation](#installation)
+2. [Manual Execution](#manual-execution)
+3. [Jenkins Pipeline Setup](#jenkins-pipeline-setup)
 
-### `npm start`
+### Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To install and run the application manually, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/FranEscano/test_tdg.git
+    cd your-repo
+    ```
 
-### `npm test`
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Manual Execution
 
-### `npm run build`
+1. Run the data generation process:
+    ```bash
+    npx cypress run --spec=cypress/e2e/createData.cy.js
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    This command will interact with the TDG website, download a zip file, and save it to the Cypress `downloads` folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Manually extract the JSON file from the downloaded zip and move it to the Cypress `fixtures` folder.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Run the script to use the JSON file in the React app:
+    ```bash
+    npx cypress run --spec=cypress/e2e/useData.cy.js
+    ```
 
-### `npm run eject`
+If you prefer to see how Cypress navigates through web interfaces by selecting and filling in each field, use the command 
+ ```bash 
+  npx cypress open
+ ```
+and choose each file in the same order as specified above. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Jenkins Pipeline Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To set up a Jenkins pipeline for automated execution, follow these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Install Jenkins on your server or preferred platform.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Create a new Jenkins pipeline job.
 
-## Learn More
+3. Configure the pipeline job with the following settings:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    - **General:**
+        - Specify a meaningful name for the job.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    - **Source Code Management:**
+        - Choose your version control system (e.g., Git).
+        - Provide the repository URL (e.g., `https://github.com/FranEscano/test_tdg.git`).
 
-### Code Splitting
+    - **Pipeline:**
+        - Define the pipeline script from SCM.
+        - Choose your version control system.
+        - Specify the repository URL and credentials.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    - Save the configuration.
 
-### Analyzing the Bundle Size
+4. In the repository, there is a `Jenkinsfile` containing the pipeline script.:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. Trigger the Jenkins pipeline manually.
 
-### Making a Progressive Web App
+7. Jenkins will automatically clone the repository, install dependencies, generate data, and use the JSON file in the React app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Now, your Jenkins pipeline is configured to automate the entire process of data generation, including the manual step of extracting the JSON file from the zip. The React form is hosted on Vercel, and there's no need to start it manually. Access the form on the specified URL (`https://test-tdg.vercel.app/`) to use the generated data for testing.
