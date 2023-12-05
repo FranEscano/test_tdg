@@ -32,7 +32,7 @@ pipeline {
         }
        stage('use data') {
            steps {
-               bat 'npx cypress run --spec=cypress\\e2e\\spec.cy.js'
+               bat 'npx cypress run --spec=cypress\\e2e\\useData.cy.js'
            }
        }
    }
